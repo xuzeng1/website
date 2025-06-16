@@ -30,6 +30,42 @@
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 0 0 3px rgba(59, 130, 246, 0.3);
             transform: translateY(-2px);
         }
+
+        /* 模态框样式 */
+       .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+       .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+        }
+
+       .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+       .close:hover,
+       .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -49,21 +85,32 @@
         <!-- 简介内容 -->
         <div id="intro" class="tab-content">
             <h2 class="text-2xl font-bold mb-4">应用简介</h2>
-	    <a href="/website/online-experiencePC.html" class="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors">电脑在线体验</a>
+            <a href="#" class="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors" onclick="openVersionModal()">电脑在线体验</a>
             <p class="text-gray-700 leading-relaxed">这是一个由徐子恒编写的跑酷游戏，你需要使用A,W,D控制角色移动跳跃闯关，通关这个游戏。</p>
-			<p>如果你发现问题或建议请发送到“ja6_wicvcxqyu@dingtalk.com”</p>
-			<h1>持续跟新中</h1>
+            <p>如果你发现问题或建议请发送到“ja6_wicvcxqyu@dingtalk.com”</p>
+            <h1>持续跟新中</h1>
         </div>
         <!-- 下载内容 -->
         <div id="download" class="tab-content hidden">
             <h2 class="text-2xl font-bold mb-4">应用下载</h2>
             <p class="text-gray-700 leading-relaxed">你可以通过以下链接下载我们的应用：</p>
             <a href="https://github.com/xuzeng1/website/releases/tag/a" class="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors">点击下载电脑版（推荐）</a>
-			<a href="https://www.123684.com/s/VFZzTd-KoOWh?提取码:1234" class="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors">点击从123云网盘下载电脑版(可能更新不及时)</a>
-			<p>提取码:1234</p>
-			<a href="https://wwih.lanzoum.com/i9evN2ul7x8h" class="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors">点击从蓝奏云网盘下载电脑版(可能更新不及时)</a>
+            <a href="https://www.123684.com/s/VFZzTd-KoOWh?提取码:1234" class="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors">点击从123云网盘下载电脑版(可能更新不及时)</a>
+            <p>提取码:1234</p>
+            <a href="https://wwih.lanzoum.com/i9evN2ul7x8h" class="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors">点击从蓝奏云网盘下载电脑版(可能更新不及时)</a>
         </div>
     </div>
+
+    <!-- 版本选择模态框 -->
+    <div id="versionModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeVersionModal()">&times;</span>
+            <h2 class="text-2xl font-bold mb-4">选择版本</h2>
+            <a href="/website/online-experiencePC-v1.0.html" class="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors">版本 1.0</a>
+            <a href="/website/online-experiencePC-v2.0.1-alpha.html" class="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors">版本 2.0.1-alpha</a>
+        </div>
+    </div>
+
     <script>
         function showTab(tabId) {
             const tabs = ['intro', 'download'];
@@ -92,7 +139,27 @@
         window.onload = function () {
             showTab('intro');
         };
+
+        // 打开版本选择模态框
+        function openVersionModal() {
+            const modal = document.getElementById('versionModal');
+            modal.style.display = "block";
+        }
+
+        // 关闭版本选择模态框
+        function closeVersionModal() {
+            const modal = document.getElementById('versionModal');
+            modal.style.display = "none";
+        }
+
+        // 点击模态框外部关闭模态框
+        window.onclick = function (event) {
+            const modal = document.getElementById('versionModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
     </script>
 </body>
 
-</html>    
+</html>
